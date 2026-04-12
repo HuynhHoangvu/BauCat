@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background-color: #f2f0ec;
+    color: #1a1a1a;
+  }
+}
+
+/* ── Hero gradient (sand → night) ── */
+.hero-gradient {
+  background: linear-gradient(
+    170deg,
+    #000000 0%,
+    #0d0500 20%,
+    #2a0e00 40%,
+    #5c2800 60%,
+    #c45a10 80%,
+    #e8933a 95%,
+    #f5c878 100%
+  );
+}
+
+/* ── Cinematic card hover ── */
+.card-hover {
+  transition: transform 0.4s cubic-bezier(.25,.46,.45,.94),
+              box-shadow 0.4s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 32px 60px rgba(0,0,0,0.5);
+}
+
+/* ── Image zoom on card hover ── */
+.img-zoom {
+  transition: transform 0.6s cubic-bezier(.25,.46,.45,.94);
+}
+.group:hover .img-zoom {
+  transform: scale(1.07);
+}
+
+/* ── Animations ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up { animation: fadeInUp 0.8s ease forwards; }
+.anim-delay-1 { animation-delay: 0.15s; opacity: 0; }
+.anim-delay-2 { animation-delay: 0.30s; opacity: 0; }
+.anim-delay-3 { animation-delay: 0.50s; opacity: 0; }
+.anim-delay-4 { animation-delay: 0.70s; opacity: 0; }
+.anim-delay-5 { animation-delay: 0.90s; opacity: 0; }
+
+/* ── Zalo / Orange pulse ── */
+@keyframes zalo-pulse {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(0,104,255,.55); }
+  50%       { box-shadow: 0 0 0 12px rgba(0,104,255,0);  }
+}
+.zalo-pulse { animation: zalo-pulse 2s infinite; }
+
+@keyframes orange-pulse {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(249,115,22,.6); }
+  50%       { box-shadow: 0 0 0 10px rgba(249,115,22,0); }
+}
+.orange-pulse { animation: orange-pulse 2s infinite; }
+
+/* ── Section label style ── */
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f97316;
+}
+
+/* ── Thin horizontal rule ── */
+.rule { border-color: rgba(255,255,255,0.08); }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #f97316; border-radius: 2px; }
