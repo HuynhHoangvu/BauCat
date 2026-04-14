@@ -52,13 +52,13 @@ export default function Services({ onBooking }) {
         <div className="mb-14 reveal">
           <ShinyText 
             text="Trải nghiệm độc bản" 
-            className="text-orange-600 font-black text-[10px] uppercase tracking-[0.4em] mb-4" 
+            className="text-orange-600 font-black text-[10px] uppercase tracking-[0.4em] mb-4 whitespace-nowrap" 
           />
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 uppercase tracking-tighter">
+            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 uppercase tracking-tighter max-w-2xl [text-wrap:balance]">
               <SplitText text="Viết nên câu chuyện của riêng bạn" delay={0.1} />
             </h2>
-            <p className="max-w-sm text-gray-500 text-xs sm:text-sm leading-relaxed font-medium">
+            <p className="max-w-sm text-gray-500 text-xs sm:text-sm leading-relaxed font-medium [text-wrap:balance]">
               Không chỉ là di chuyển, chúng tôi mang đến những hành trình đánh thức mọi giác quan giữa lòng sa mạc Bàu Trắng.
             </p>
           </div>

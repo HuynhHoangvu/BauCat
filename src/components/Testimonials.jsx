@@ -89,14 +89,19 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         
         {/* Header */}
-        <div className="mb-20 text-center reveal">
-          <ShinyText 
-            text="Phản hồi từ khách hàng" 
-            className="text-orange-600 font-black text-[10px] uppercase tracking-[0.4em] mb-4" 
-          />
-          <h2 className="text-3xl sm:text-4xl font-black text-gray-900 uppercase tracking-tighter">
-            <SplitText text="Lời hồi đáp từ trái tim" delay={0.1} />
-          </h2>
+        <div className="mb-14 sm:mb-20 text-center lg:text-left flex flex-col lg:flex-row lg:items-end justify-between gap-8 reveal">
+          <div>
+            <ShinyText 
+              text="Cảm nhận khách hàng" 
+              className="text-orange-600 font-black text-[10px] uppercase tracking-[0.4em] mb-4 whitespace-nowrap inline-block" 
+            />
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 uppercase tracking-tighter leading-tight [text-wrap:balance]">
+              <SplitText text="Lắng nghe từ những người đồng hành" delay={0.1} />
+            </h2>
+          </div>
+          <p className="max-w-sm text-gray-500 text-xs sm:text-sm leading-relaxed font-medium [text-wrap:balance]">
+            Những trải nghiệm thật, những nụ cười thật là món quà quý giá nhất mà đội ngũ Bàu Cát Trắng nhận được.
+          </p>
         </div>
 
         {/* Slick Slider */}

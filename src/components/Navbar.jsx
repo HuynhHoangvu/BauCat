@@ -73,41 +73,52 @@ export default function Navbar({ onBooking }) {
 
         {/* Mobile toggle */}
         <button
-          className={`${scrolled ? 'md:hidden text-gray-900' : 'md:hidden text-white'} font-black text-[10px] tracking-widest uppercase`}
+          className={`${scrolled ? 'text-gray-900' : 'text-white'} md:hidden p-2 transition-transform active:scale-90`}
           onClick={() => setOpen(v => !v)}
         >
-          {open ? 'ĐÓNG' : 'MENU'}
+          {open ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile drawer */}
-      {open && (
-        <div className="md:hidden bg-white border-t border-gray-100 shadow-xl">
-          <div className="px-6 py-5 flex flex-col gap-4">
-            {NAV_LINKS.map(l => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="text-gray-500 hover:text-gray-900 text-[10px] font-black tracking-widest uppercase border-b border-gray-100 pb-4 last:border-0"
-              >
-                {l.label}
-              </a>
-            ))}
-            <div className="pt-2 flex flex-col gap-3">
-              <a href="tel:0979391234" className="text-gray-400 text-xs font-black tracking-widest uppercase flex items-center gap-2">
-                Hotline: 0979 391 234
+      <div className={`md:hidden fixed inset-0 top-[60px] bg-white z-40 transition-all duration-500 ease-in-out ${
+        open ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
+      }`}>
+          <div className="px-8 py-10 flex flex-col h-full">
+            <div className="flex flex-col gap-6">
+              {NAV_LINKS.map((l, i) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="text-gray-900 text-2xl font-black uppercase tracking-tighter border-b border-gray-100 pb-4 flex justify-between items-center group"
+                  style={{ transitionDelay: `${i * 50}ms` }}
+                >
+                  {l.label}
+                  <Menu size={16} className="text-orange-500 opacity-0 group-hover:opacity-100" />
+                </a>
+              ))}
+            </div>
+            
+            <div className="mt-auto space-y-6">
+              <a href="tel:0979391234" className="flex items-center gap-4 bg-gray-50 p-5 rounded-2xl">
+                <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white">
+                  <Phone size={20} />
+                </div>
+                <div>
+                  <p className="text-[10px] font-black uppercase text-gray-400 tracking-widest">Hotline 24/7</p>
+                  <p className="text-lg font-black text-gray-900 tracking-tight">0979 391 234</p>
+                </div>
               </a>
               <button
                 onClick={() => { onBooking(); setOpen(false) }}
-                className="bg-orange-500 text-white font-black text-[10px] tracking-widest uppercase py-4 mt-2"
+                className="w-full bg-orange-500 text-white font-black text-sm uppercase tracking-[0.2em] py-5 rounded-2xl shadow-xl shadow-orange-500/20 active:scale-95 transition-all text-center"
               >
                 Đặt xe ngay
               </button>
             </div>
           </div>
-        </div>
-      )}
+      </div>
     </nav>
   )
 }

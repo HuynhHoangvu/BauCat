@@ -83,19 +83,19 @@ export default function Combos({ onBooking }) {
           <div>
             <ShinyText 
               text="Best Value Passes" 
-              className="text-orange-600 font-black text-[10px] uppercase tracking-[0.4em] mb-4" 
+              className="text-orange-600 font-black text-[10px] uppercase tracking-[0.4em] mb-4 whitespace-nowrap" 
             />
-            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 uppercase tracking-tighter">
+            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 uppercase tracking-tighter [text-wrap:balance]">
               <SplitText text="Thẻ thông hành — giá trọn gói" delay={0.1} />
             </h2>
           </div>
-          <p className="max-w-md text-gray-400 text-xs sm:text-sm leading-relaxed font-medium">
+          <p className="max-w-md text-gray-400 text-xs sm:text-sm leading-relaxed font-medium [text-wrap:balance]">
             Tận hưởng trọn vẹn Bàu Trắng với các gói "All-in-one" được thiết kế tối ưu, giúp bạn tiết kiệm thời gian và chi phí lên đến 20%.
           </p>
         </div>
 
         {/* Cards - Ticket Design */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {COMBOS.map((c, idx) => (
             <div 
               key={c.id}

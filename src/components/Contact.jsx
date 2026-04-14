@@ -28,13 +28,13 @@ export default function Contact() {
         
         <ShinyText 
           text="Liên hệ với chúng tôi" 
-          className="text-orange-600 font-black text-[10px] uppercase tracking-[0.4em] mb-4" 
+          className="text-orange-600 font-black text-[10px] uppercase tracking-[0.4em] mb-4 whitespace-nowrap" 
         />
-        <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tighter mb-4">
+        <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tighter mb-4 [text-wrap:balance]">
           <SplitText text="Đến đây dễ dàng" delay={0.1} />
         </h2>
         
-        <p className="text-sm font-medium text-gray-700 mb-10 leading-relaxed pr-4">
+        <p className="text-sm font-medium text-gray-700 mb-10 leading-relaxed pr-4 [text-wrap:balance]">
           Hệ thống dịch vụ xe địa hình, ATV, Jeep và các trải nghiệm đồi cát đẳng cấp nhất tại Bàu Trắng. Luôn sẵn sàng đón tiếp bạn!
         </p>
 

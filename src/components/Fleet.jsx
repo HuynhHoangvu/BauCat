@@ -79,13 +79,13 @@ export default function Fleet({ onBooking }) {
         <div className="mb-12 sm:mb-16 reveal">
           <ShinyText 
             text="Đội xe & Bảng giá" 
-            className="text-orange-600 font-black text-[10px] uppercase tracking-[0.4em] mb-5" 
+            className="text-orange-600 font-black text-[10px] uppercase tracking-[0.4em] mb-5 whitespace-nowrap" 
           />
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 uppercase leading-tight tracking-tighter">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 uppercase leading-tight tracking-tighter [text-wrap:balance] max-w-3xl">
               <SplitText text="Chọn xe — giá rõ ràng" delay={0.1} />
             </h2>
-            <p className="text-gray-400 text-xs sm:text-sm max-w-sm leading-relaxed lg:text-right font-medium">
+            <p className="text-gray-400 text-xs sm:text-sm max-w-sm leading-relaxed lg:text-right font-medium [text-wrap:balance]">
               Không phụ thu ẩn. Xe sạch bóng, sẵn sàng từ 5:00 sáng.
             </p>
           </div>
