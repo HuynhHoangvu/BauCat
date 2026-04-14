@@ -13,10 +13,10 @@ export default function FloatingContact() {
           {/* Phone 1 */}
           <a
             href="tel:0979391234"
-            className="flex items-center gap-2.5 bg-white shadow-xl border border-gray-200 rounded-full pl-3 pr-5 py-2.5 text-sm font-semibold text-gray-800 hover:border-orange-400 hover:shadow-orange-100 transition-all animate-fade-in-up"
+            className="flex items-center gap-2.5 bg-white shadow-xl border border-gray-200 rounded-full pl-3 pr-5 py-2.5 text-[10px] font-black uppercase text-gray-800 hover:border-orange-400 hover:shadow-orange-100 transition-all animate-fade-in-up"
           >
-            <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center shrink-0">
-              <Phone size={14} className="text-white" />
+            <div className="bg-orange-500 text-white px-2 py-1 rounded-full shrink-0">
+              GỌI
             </div>
             0979 391 234
           </a>
@@ -24,11 +24,11 @@ export default function FloatingContact() {
           {/* Phone 2 */}
           <a
             href="tel:0909737797"
-            className="flex items-center gap-2.5 bg-white shadow-xl border border-gray-200 rounded-full pl-3 pr-5 py-2.5 text-sm font-semibold text-gray-800 hover:border-orange-400 hover:shadow-orange-100 transition-all animate-fade-in-up"
+            className="flex items-center gap-2.5 bg-white shadow-xl border border-gray-200 rounded-full pl-3 pr-5 py-2.5 text-[10px] font-black uppercase text-gray-800 hover:border-orange-400 hover:shadow-orange-100 transition-all animate-fade-in-up"
             style={{ animationDelay: '0.05s', opacity: 0 }}
           >
-            <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center shrink-0">
-              <Phone size={14} className="text-white" />
+            <div className="bg-orange-500 text-white px-2 py-1 rounded-full shrink-0">
+              GỌI
             </div>
             0909 737 797
           </a>
@@ -38,11 +38,11 @@ export default function FloatingContact() {
             href="https://zalo.me/0979391234"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2.5 bg-white shadow-xl border border-gray-200 rounded-full pl-3 pr-5 py-2.5 text-sm font-semibold text-gray-800 hover:border-blue-400 hover:shadow-blue-100 transition-all animate-fade-in-up"
+            className="flex items-center gap-2.5 bg-white shadow-xl border border-gray-200 rounded-full pl-3 pr-5 py-2.5 text-[10px] font-black uppercase text-gray-800 hover:border-blue-400 hover:shadow-blue-100 transition-all animate-fade-in-up"
             style={{ animationDelay: '0.10s', opacity: 0 }}
           >
-            <div className="w-8 h-8 bg-[#0068FF] rounded-full flex items-center justify-center shrink-0">
-              <MessageCircle size={14} className="text-white" />
+            <div className="bg-[#0068FF] text-white px-2 py-1 rounded-full shrink-0">
+              ZALO
             </div>
             Chat Zalo
           </a>
@@ -52,17 +52,14 @@ export default function FloatingContact() {
       {/* Main toggle */}
       <button
         onClick={() => setOpen(v => !v)}
-        className={`w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 ${
+        className={`w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 font-black text-[10px] uppercase tracking-widest ${
           open
-            ? 'bg-gray-700 hover:bg-gray-800 rotate-0'
-            : 'bg-[#0068FF] hover:bg-[#0055CC] zalo-pulse'
+            ? 'bg-gray-700 hover:bg-gray-800 text-white'
+            : 'bg-orange-500 hover:bg-orange-600 text-white'
         }`}
         aria-label={open ? 'Đóng' : 'Liên hệ'}
       >
-        {open
-          ? <X size={22} className="text-white" />
-          : <MessageCircle size={22} className="text-white" />
-        }
+        {open ? 'ĐÓNG' : 'GỌI'}
       </button>
     </div>
   )

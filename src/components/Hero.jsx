@@ -1,136 +1,153 @@
-import { useRef } from 'react'
-import { ChevronDown, Calendar, MessageCircle } from 'lucide-react'
-
-// ─────────────────────────────────────────────
-//  HƯỚNG DẪN THÊM VIDEO
-//
-//  CÁCH 1 – Video local (file mp4 của bạn):
-//    1. Nén video xuống ~10 MB (dùng HandBrake / ffmpeg)
-//    2. Đổi tên thành hero.mp4, đặt vào thư mục public/
-//    3. Để YOUTUBE_ID = '' (rỗng)
-//
-//  CÁCH 2 – YouTube (tiện hơn, không cần nén):
-//    1. Upload video lên YouTube (có thể để Unlisted)
-//    2. Copy VIDEO_ID từ URL: youtube.com/watch?v=VIDEO_ID
-//    3. Paste vào YOUTUBE_ID bên dưới
-//
-//  Ví dụ: const YOUTUBE_ID = 'dQw4w9WgXcQ'
-// ─────────────────────────────────────────────
-const YOUTUBE_ID = '' // ← dán YouTube ID vào đây
+import { useRef, useEffect, useState } from 'react'
+import SplitText from '../animations/SplitText'
+import ShinyText from '../animations/ShinyText'
 
 export default function Hero({ onBooking }) {
   const videoRef = useRef(null)
+  const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const { clientX, clientY } = e
+      const x = (clientX / window.innerWidth) * 100
+      const y = (clientY / window.innerHeight) * 100
+      setMousePos({ x, y })
+    }
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
 
   const handleVideoLoad = () => {
     if (videoRef.current) videoRef.current.style.opacity = '1'
   }
 
   return (
-    <section className="relative h-screen min-h-150 flex items-center justify-center overflow-hidden bg-black">
+    <section className="relative w-full h-screen min-h-[750px] flex items-center justify-center overflow-hidden bg-black select-none">
+      
+      {/* ── 1. Background Layer ── */}
+      <div className="absolute inset-0 hero-gradient opacity-60 z-0" />
+      
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        onLoadedData={handleVideoLoad}
+        className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-2000 scale-105 z-0"
+      >
+        <source src="/hero_v.mp4" type="video/mp4" />
+      </video>
 
-      {/* ── 1. Fallback gradient (hiển thị khi chưa có video) ── */}
-      <div className="absolute inset-0 hero-gradient" />
+      {/* ── 2. Interactive Light Glow ── */}
+      <div 
+        className="absolute inset-0 pointer-events-none transition-all duration-300 ease-out z-10"
+        style={{
+          background: `radial-gradient(circle 600px at ${mousePos.x}% ${mousePos.y}%, rgba(249, 115, 22, 0.12), transparent 70%)`
+        }}
+      />
 
-      {/* ── 2a. YouTube background (nếu có YOUTUBE_ID) ── */}
-      {YOUTUBE_ID && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <iframe
-            src={`https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&modestbranding=1&playlist=${YOUTUBE_ID}&iv_load_policy=3&disablekb=1`}
-            allow="autoplay; encrypted-media"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-[177.78vh] h-[56.25vw]"
-            title="Hero background"
-          />
-        </div>
-      )}
+      {/* ── 3. Overlays (Tăng độ tương phản để chữ rõ hơn) ── */}
+      <div className="absolute inset-0 bg-black/40 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-10" />
 
-      {/* ── 2b. Local video (nếu không có YOUTUBE_ID) ── */}
-      {!YOUTUBE_ID && (
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          onLoadedData={handleVideoLoad}
-          className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000"
-        >
-          <source src="/hero_v.mp4" type="video/mp4" />
-          {/* Không có file → gradient phía sau tự hiện */}
-        </video>
-      )}
-
-      {/* ── 3. Overlays ── */}
-      <div className="absolute inset-0 bg-black/45" />
-      <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-black/30" />
-      <div className="absolute bottom-1/3 left-1/3 w-125 h-125 bg-orange-600/10 rounded-full blur-3xl pointer-events-none" />
-
-      {/* ── 4. Hero content ── */}
-      {/*  pb-16 sm:pb-0 + pt-24: tránh bị nav đè, và nhô lên từ đáy trên mobile  */}
-      <div className="relative z-10 px-8 sm:px-12 max-w-3xl pt-20 text-center mx-auto">
-
-        <div className="animate-fade-in-up">
-          <p className="section-label mb-6 flex items-center justify-center gap-3">
-            <span className="inline-block w-8 h-px bg-orange-500" />
-            Tiểu Sa Mạc Bàu Trắng &nbsp;·&nbsp; Lâm Đồng
-            <span className="inline-block w-8 h-px bg-orange-500" />
-          </p>
+      {/* ── 4. Content Layer ── */}
+      <div className="relative z-20 px-6 sm:px-8 max-w-5xl w-full flex flex-col items-center text-center mt-12">
+        
+        {/* Tagline */}
+        <div className="animate-fade-in-up mb-6 sm:mb-8">
+          <div className="flex items-center justify-center gap-3 sm:gap-5">
+            <span className="w-10 sm:w-16 h-[1px] bg-gradient-to-r from-transparent to-yellow-400/80" />
+            <ShinyText 
+              text="Tiểu Sa Mạc Bàu Trắng" 
+              className="text-[11px] sm:text-sm font-black uppercase tracking-[0.4em] text-yellow-400 drop-shadow-md" 
+            />
+            <span className="w-10 sm:w-16 h-[1px] bg-gradient-to-l from-transparent to-yellow-400/80" />
+          </div>
         </div>
 
-        <h1 className="animate-fade-in-up anim-delay-1 font-black leading-[0.9] mb-6">
-          <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white uppercase tracking-tight">
-            Chinh
-          </span>
-          <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-orange-500 uppercase tracking-tight">
-            Phục
-          </span>
-          <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white uppercase tracking-tight">
-            Sa Mạc
-          </span>
+        {/* Main Title - Đã sửa lỗi chồng chữ và mất chữ */}
+        <h1 className="mb-10 sm:mb-14 pointer-events-none flex flex-col items-center gap-2 sm:gap-4 w-full">
+          {/* Dòng 1: CHINH PHỤC */}
+          <div className="flex flex-wrap justify-center items-center gap-x-4 sm:gap-x-6 text-[48px] sm:text-[72px] lg:text-[90px] font-black leading-none select-none">
+            <SplitText 
+              text="CHINH" 
+              className="text-white tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]" 
+              delay={0.1}
+            />
+            <SplitText 
+              text="PHỤC" 
+              className="text-orange-500 tracking-tight drop-shadow-[0_4px_12px_rgba(249,115,22,0.4)]" 
+              delay={0.3}
+            />
+          </div>
+          {/* Dòng 2: SA MẠC */}
+          <div className="flex justify-center items-center gap-4 sm:gap-6 text-[48px] sm:text-[72px] lg:text-[90px] font-black leading-none select-none">
+            <SplitText 
+              text="SA" 
+              className="text-white tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]" 
+              delay={0.5}
+            />
+            {/* Fix lỗi mất chữ MẠC bằng class outline chuẩn của Tailwind */}
+            <SplitText 
+              text="MẠC" 
+              className="text-transparent tracking-tight [-webkit-text-stroke:1.5px_rgba(255,255,255,0.8)] sm:[-webkit-text-stroke:2px_rgba(255,255,255,0.9)] opacity-80" 
+              delay={0.7}
+            />
+          </div>
         </h1>
 
-        <p className="animate-fade-in-up anim-delay-2 text-white/65 text-base sm:text-lg max-w-md mb-2 leading-relaxed">
-          ATV · Jeep địa hình · Lạc đà · Đà điểu
-        </p>
-        <p className="animate-fade-in-up anim-delay-2 text-white/40 text-sm mb-10 tracking-wider">
-          ⏰ 05:00 – 17:30 · Mở hàng ngày
-        </p>
+        {/* Sub-info & Buttons */}
+        <div className="animate-fade-in-up anim-delay-2 flex flex-col items-center gap-8 w-full">
+          <p className="text-white/60 text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] max-w-lg leading-relaxed">
+            ATV <span className="mx-2 text-orange-500">•</span> 
+            Jeep Địa Hình <span className="mx-2 text-orange-500">•</span> 
+            Lạc Đà <span className="mx-2 text-orange-500">•</span> 
+            Đà Điểu
+          </p>
+          
+          <div className="flex flex-col sm:flex-row w-full sm:w-auto gap-4 sm:gap-6 justify-center">
+            <button
+              onClick={onBooking}
+              className="group relative w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-5 bg-orange-500 overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(249,115,22,0.5)] hover:-translate-y-1 active:scale-95"
+            >
+              <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12" />
+              <span className="relative z-10 text-white font-black text-[11px] sm:text-xs uppercase tracking-[0.3em]">Đặt xe ngay →</span>
+            </button>
 
-        {/* CTAs */}
-        <div className="animate-fade-in-up anim-delay-3 flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            onClick={onBooking}
-            className="orange-pulse bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm tracking-widest uppercase px-8 py-4 flex items-center justify-center gap-2.5 transition-colors"
-          >
-            <Calendar size={16} />
-            Đặt xe ngay
-          </button>
-          <a
-            href="https://zalo.me/0979391234"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border border-white/30 hover:border-white/70 text-white font-bold text-sm tracking-widest uppercase px-8 py-4 flex items-center justify-center gap-2.5 transition-colors"
-          >
-            <MessageCircle size={16} />
-            Chat Zalo
-          </a>
+            <a
+              href="https://zalo.me/0979391234"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-5 backdrop-blur-sm border border-white/20 text-white font-black text-[11px] sm:text-xs uppercase tracking-[0.3em] hover:bg-white/10 hover:border-white/40 hover:-translate-y-1 transition-all flex items-center justify-center"
+            >
+              Liên hệ Zalo
+            </a>
+          </div>
         </div>
 
-        {/* Stats */}
-        <div className="animate-fade-in-up anim-delay-4 mt-5 flex items-center justify-center gap-10 border-t border-white/12 pt-8">
+        {/* ── 5. Compact Statistics Card ── */}
+        <div className="animate-fade-in-up anim-delay-3 mt-16 sm:mt-24 grid grid-cols-3 gap-4 sm:gap-12 w-full max-w-3xl p-5 sm:p-8 rounded-3xl sm:rounded-[2.5rem] bg-black/20 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-100 opacity-50" />
+          
           {[
-            { num: '4+',    label: 'Loại xe' },
-            { num: '5★',    label: 'Đánh giá' },
-            { num: '1000+', label: 'Lượt / tháng' },
+            { num: '04+',   label: 'Loại xe' },
+            { num: '5.0',   label: 'Đánh giá' },
+            { num: '1.2k',  label: 'Khách / tháng' },
           ].map((s, i) => (
-            <div key={i}>
-              <div className="text-2xl sm:text-3xl font-black text-orange-500">{s.num}</div>
-              <div className="text-white/40 text-xs tracking-widest uppercase mt-0.5">{s.label}</div>
+            <div key={i} className="relative z-10 flex flex-col items-center justify-center text-center">
+              <div className="text-2xl sm:text-4xl lg:text-5xl font-black text-white mb-2 tracking-tighter drop-shadow-md">{s.num}</div>
+              <div className="text-orange-400 text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em]">{s.label}</div>
             </div>
           ))}
         </div>
       </div>
+      
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-40 z-20">
+        <div className="w-[2px] h-12 bg-gradient-to-b from-orange-500 to-transparent rounded-full" />
+      </div>
 
-      {/* Scroll cue */}
     </section>
   )
 }

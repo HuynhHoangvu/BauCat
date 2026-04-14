@@ -1,6 +1,9 @@
 import { MapPin, Phone, Clock, Facebook, Youtube } from 'lucide-react'
+import ShinyText from '../animations/ShinyText'
+import SplitText from '../animations/SplitText'
 
 const NAV = [
+// ... (keep constant as is)
   ['Dịch vụ',         '#dich-vu'],
   ['Bảng giá',        '#bang-gia'],
   ['Combo',           '#combo'],
@@ -8,11 +11,12 @@ const NAV = [
   ['Liên hệ',         '#lien-he'],
 ]
 
-export default function   Footer() {
+export default function Footer() {
   return (
     <footer
       id="footer"
       className="relative overflow-hidden bg-[#161410]"
+// ... (keep styles as is)
       style={{
         /* Sand texture via CSS noise pattern */
         backgroundImage: `
@@ -29,15 +33,14 @@ export default function   Footer() {
       <div className="relative z-10 px-6 py-10 lg:px-8">
         <div className="max-w-6xl mx-auto grid gap-8 text-center">
           <div className="space-y-6">
-            <p className="section-label inline-flex items-center gap-2 text-sm text-orange-500 uppercase tracking-[0.35em] justify-center w-full">
+            <div className="section-label inline-flex items-center gap-2 text-sm text-orange-500 uppercase tracking-[0.35em] justify-center w-full">
               <span className="block h-px w-8 bg-orange-500" />
-              Bắt đầu hôm nay
+              <ShinyText text="Bắt đầu hôm nay" />
               <span className="block h-px w-8 bg-orange-500" />
-
-            </p>
+            </div>
             <div>
               <h2 className="text-2xl sm:text-3xl font-black text-white uppercase leading-snug">
-                Chuyến đi của bạn bắt đầu ở đây
+                <SplitText text="Chuyến đi của bạn bắt đầu ở đây" delay={0.1} />
               </h2>
               <p className="mt-3 text-sm text-white/60 max-w-xl mx-auto leading-relaxed">
                 Đặt xe ngay với đội ngũ phục vụ chuyên nghiệp từ 5:00 sáng. Liên hệ nhanh để nhận hỗ trợ và tư vấn lịch trình phù hợp.
@@ -60,26 +63,23 @@ export default function   Footer() {
               </a>
             </div>
             <div className="grid gap-6 text-center">
-              <div>
-                <img
-                  src="/newlogo1.png"
-                  alt="Du Lịch Triều Trang"
-                  className="mx-auto h-12 w-auto"
-                  style={{ mixBlendMode: 'screen' }}
-                />
-              </div>
-              <nav className="flex flex-wrap justify-center gap-4 text-xs uppercase tracking-[0.25em] text-white/40">
-                {NAV.map(([label, href]) => (
-                  <a key={href} href={href} className="hover:text-orange-500 transition-colors">
-                    {label}
-                  </a>
-                ))}
-              </nav>
+              <div className="flex justify-center items-center py-4">
+    <a href="#" className="group">
+      <img
+        src="/newlogo1.png"
+        alt="Du Lịch Triều Trang"
+        /* h-20 trên mobile và h-28 trên desktop là đẹp nhất cho footer */
+        className="h-20 lg:h-28 w-auto object-contain group-hover:scale-105 transition-transform filter drop-shadow-[0_5px_15px_rgba(255,165,0,0.2)]"
+      />
+    </a>
+  </div>
+
               <div className="space-y-3 text-xs text-white/60">
                 <div className="flex justify-center gap-3">
                   <span className="inline-flex items-center gap-1.5">
                     <MapPin size={14} className="text-orange-500" />
-                    Thôn Hồng Lâm, xã Hoà Thắng, Lâm Đồng
+                    <a href="https://maps.app.goo.gl/ra8AxyAZg8gDvZwg6"> Hoà Thắng, Lâm Đồng</a>
+                   
                   </span>
                 </div>
                 <div className="flex justify-center gap-3">

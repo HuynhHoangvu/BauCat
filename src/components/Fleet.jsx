@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react'
-import { Users, Clock, ArrowRight } from 'lucide-react'
+import ShinyText from '../animations/ShinyText'
+import SplitText from '../animations/SplitText'
 
 const VEHICLES = [
+// ... (keep VEHICLES as is)
   {
     id: 'atv',
-    emoji: '🏍️',
     name: 'ATV / Mô tô địa hình',
     short: 'ATV',
     desc: 'Chinh phục địa hình cát với xe gầm cao cực mạnh.',
@@ -36,7 +37,7 @@ const VEHICLES = [
     unit: '1 người · 1 vòng',
     capacity: '1 người',
     duration: '1 vòng',
-    img: '/emu.jpg',
+    img: '/camel.jpeg',
     hot: false,
   },
   {
@@ -48,7 +49,7 @@ const VEHICLES = [
     unit: '1 người · 1 vòng',
     capacity: '1 người',
     duration: '1 vòng',
-    img: '/camel.jpeg',
+    img: '/emu.jpg',
     hot: false,
   },
 ]
@@ -75,14 +76,16 @@ export default function Fleet({ onBooking }) {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
 
         {/* Header */}
-        <div className="mb-12 sm:mb-16">
-          <p className="section-label mb-5">Đội xe & Bảng giá</p>
+        <div className="mb-12 sm:mb-16 reveal">
+          <ShinyText 
+            text="Đội xe & Bảng giá" 
+            className="text-orange-600 font-black text-[10px] uppercase tracking-[0.4em] mb-5" 
+          />
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5">
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 uppercase leading-tight">
-              Chọn xe —
-              <span className="text-orange-500"> giá rõ ràng</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 uppercase leading-tight tracking-tighter">
+              <SplitText text="Chọn xe — giá rõ ràng" delay={0.1} />
             </h2>
-            <p className="text-gray-400 text-sm max-w-md leading-relaxed lg:text-right">
+            <p className="text-gray-400 text-xs sm:text-sm max-w-sm leading-relaxed lg:text-right font-medium">
               Không phụ thu ẩn. Xe sạch bóng, sẵn sàng từ 5:00 sáng.
             </p>
           </div>
@@ -93,10 +96,10 @@ export default function Fleet({ onBooking }) {
           {VEHICLES.map((v, i) => (
             <div
               key={v.id}
-              className={`fleet-card card-hover group relative overflow-hidden cursor-pointer bg-white border border-gray-200 hover:border-orange-300 hover:shadow-xl transition-all ${
+              className={`fleet-card group relative overflow-hidden cursor-pointer bg-white border border-gray-200 hover:border-orange-300 hover:shadow-xl transition-all reveal ${
                 v.hot ? 'ring-2 ring-orange-400 ring-offset-2' : ''
               }`}
-              style={{ opacity: 0, animationDelay: `${i * 0.1}s` }}
+              style={{ animationDelay: `${i * 0.1}s` }}
               onClick={() => onBooking(v.name)}
             >
               {/* Image area */}
@@ -104,7 +107,7 @@ export default function Fleet({ onBooking }) {
                 <img
                   src={v.img}
                   alt={v.name}
-                  className="w-full h-full object-cover img-zoom"
+                  className="w-full h-full object-cover img-pan"
                 />
 
                 {v.hot && (
@@ -124,10 +127,10 @@ export default function Fleet({ onBooking }) {
                 <h3 className="font-black text-gray-900 text-sm uppercase tracking-tight mb-1">{v.name}</h3>
                 <p className="text-gray-400 text-xs mb-3 leading-relaxed">{v.desc}</p>
 
-                <div className="flex items-center gap-3 text-gray-400 text-xs mb-4">
-                  <span className="flex items-center gap-1"><Users size={10} /> {v.capacity}</span>
+                <div className="flex items-center gap-3 text-gray-400 text-xs mb-4 uppercase font-bold tracking-tighter">
+                  <span>{v.capacity}</span>
                   <span className="w-px h-3 bg-gray-200" />
-                  <span className="flex items-center gap-1"><Clock size={10} /> {v.duration}</span>
+                  <span>{v.duration}</span>
                 </div>
 
                 <div className="flex items-end justify-between border-t border-gray-100 pt-4">
@@ -135,8 +138,8 @@ export default function Fleet({ onBooking }) {
                     <div className="text-xl font-black text-orange-500 leading-none">{v.price}</div>
                     <div className="text-gray-400 text-[10px] tracking-wider mt-0.5">{v.unit}</div>
                   </div>
-                  <div className="w-8 h-8 border border-orange-300 group-hover:bg-orange-500 group-hover:border-orange-500 flex items-center justify-center transition-all duration-300">
-                    <ArrowRight size={13} className="text-orange-400 group-hover:text-white transition-colors" />
+                  <div className="w-auto px-3 py-1.5 border border-orange-300 group-hover:bg-orange-500 group-hover:border-orange-500 flex items-center justify-center transition-all duration-300 text-[10px] font-black uppercase text-orange-400 group-hover:text-white">
+                    Đặt ngay
                   </div>
                 </div>
               </div>
@@ -146,9 +149,8 @@ export default function Fleet({ onBooking }) {
 
         {/* Hours note */}
         <div className="mt-10 flex items-center gap-4 border-t border-gray-200 pt-8">
-          <span className="text-orange-500 text-xl">⏰</span>
-          <span className="text-gray-400 text-sm tracking-wider">
-            Giờ phục vụ: <span className="text-gray-900 font-semibold">5:00 – 17:30</span> · Mở cửa hàng ngày kể cả ngày lễ
+          <span className="text-gray-400 text-sm tracking-widest uppercase">
+            Giờ phục vụ: <span className="text-gray-900 font-black">5:00 – 17:30</span> · Hàng ngày
           </span>
         </div>
       </div>
