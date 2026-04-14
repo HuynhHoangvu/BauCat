@@ -95,8 +95,12 @@ export default function Testimonials() {
               text="Cảm nhận khách hàng" 
               className="text-orange-600 font-black text-[10px] uppercase tracking-[0.4em] mb-4 whitespace-nowrap inline-block" 
             />
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 uppercase tracking-tighter leading-tight [text-wrap:balance]">
-              <SplitText text="Lắng nghe từ những người đồng hành" delay={0.1} />
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 uppercase tracking-tighter leading-tight [text-wrap:balance] text-center lg:text-left">
+              <SplitText 
+                text="Lắng nghe từ những người đồng hành" 
+                delay={0.05} 
+                className="justify-center lg:justify-start"
+              />
             </h2>
           </div>
           <p className="max-w-sm text-gray-500 text-xs sm:text-sm leading-relaxed font-medium [text-wrap:balance]">

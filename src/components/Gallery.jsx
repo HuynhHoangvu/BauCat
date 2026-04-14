@@ -30,8 +30,12 @@ export default function Gallery() {
               text="Khoảnh khắc Bàu Trắng" 
               className="text-orange-600 font-black text-[10px] uppercase tracking-[0.4em] mb-4 whitespace-nowrap" 
             />
-            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 uppercase tracking-tighter [text-wrap:balance]">
-              <SplitText text="Góc nhìn chân thực từ khách hàng" delay={0.1} />
+            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 uppercase tracking-tighter [text-wrap:balance] text-center lg:text-left">
+              <SplitText 
+                text="Góc nhìn chân thực từ khách hàng" 
+                delay={0.05} 
+                className="justify-center lg:justify-start"
+              />
             </h2>
           </div>
           <p className="text-gray-400 text-xs sm:text-sm max-w-sm lg:ml-auto lg:text-right leading-relaxed font-medium [text-wrap:balance]">

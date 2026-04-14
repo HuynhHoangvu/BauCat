@@ -76,27 +76,27 @@ export default function Hero({ onBooking }) {
           <div className="flex flex-wrap justify-center items-center gap-x-4 sm:gap-x-6 text-[36px] xs:text-[48px] sm:text-[72px] lg:text-[90px] font-black leading-none select-none whitespace-nowrap">
             <SplitText 
               text="CHINH" 
-              className="text-white tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]" 
-              delay={0.1}
+              className="text-white tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] justify-center" 
+              delay={0.05}
             />
             <SplitText 
               text="PHỤC" 
-              className="text-orange-500 tracking-tight drop-shadow-[0_4px_12px_rgba(249,115,22,0.4)]" 
-              delay={0.3}
+              className="text-orange-500 tracking-tight drop-shadow-[0_4px_12px_rgba(249,115,22,0.4)] justify-center" 
+              delay={0.05}
             />
           </div>
           {/* Dòng 2: SA MẠC */}
           <div className="flex justify-center items-center gap-4 sm:gap-6 text-[36px] xs:text-[48px] sm:text-[72px] lg:text-[90px] font-black leading-none select-none whitespace-nowrap">
             <SplitText 
               text="SA" 
-              className="text-white tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]" 
-              delay={0.5}
+              className="text-white tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] justify-center" 
+              delay={0.05}
             />
             {/* Fix lỗi mất chữ MẠC bằng class outline chuẩn của Tailwind */}
             <SplitText 
               text="MẠC" 
-              className="text-transparent tracking-tight [-webkit-text-stroke:1px_rgba(255,255,255,0.8)] sm:[-webkit-text-stroke:2px_rgba(255,255,255,0.9)] opacity-80" 
-              delay={0.7}
+              className="text-transparent tracking-tight [-webkit-text-stroke:1px_rgba(255,255,255,0.8)] sm:[-webkit-text-stroke:2px_rgba(255,255,255,0.9)] opacity-80 justify-center" 
+              delay={0.05}
             />
           </div>
         </h1>

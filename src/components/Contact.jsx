@@ -30,8 +30,12 @@ export default function Contact() {
           text="Liên hệ với chúng tôi" 
           className="text-orange-600 font-black text-[10px] uppercase tracking-[0.4em] mb-4 whitespace-nowrap" 
         />
-        <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tighter mb-4 [text-wrap:balance]">
-          <SplitText text="Đến đây dễ dàng" delay={0.1} />
+        <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tighter mb-4 [text-wrap:balance] text-center lg:text-left">
+          <SplitText 
+            text="Đến đây dễ dàng" 
+            delay={0.05} 
+            className="justify-center lg:justify-start"
+          />
         </h2>
         
         <p className="text-sm font-medium text-gray-700 mb-10 leading-relaxed pr-4 [text-wrap:balance]">
