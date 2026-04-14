@@ -44,7 +44,7 @@ export default function Contact() {
               <div className="flex gap-4 items-center">
                  <MapPin size={20} className="text-orange-500" />
                  <div className="font-black uppercase text-sm group-hover:text-orange-500 transition-colors">
-                   Hồng Lâm, Hoà Thắng
+                  <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.658846134229!2d108.42467151032308!3d11.064183953775157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31769535095d4b13%3A0x9386976cf4ad0ef2!2zRHUgTGnMo2NoIFRyacOqzIB1IFRyYW5n!5e0!3m2!1svi!2s!4v1776017354477!5m2!1svi!2s">Hoà Thắng, Lâm Đồng</a>
                  </div>
               </div>
            </div>
@@ -102,8 +102,7 @@ export default function Contact() {
           height="100%"
           style={{ 
             border: 0, 
-            backgroundColor: '#fff',
-            filter: 'grayscale(0%) brightness(1.15)',
+            filter: 'grayscale(0%)',
           }}
           allowFullScreen
           loading="lazy"

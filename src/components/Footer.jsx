@@ -62,7 +62,7 @@ export default function   Footer() {
             <div className="grid gap-6 text-center">
               <div>
                 <img
-                  src="/newlogo.png"
+                  src="/newlogo1.png"
                   alt="Du Lịch Triều Trang"
                   className="mx-auto h-12 w-auto"
                   style={{ mixBlendMode: 'screen' }}

@@ -30,7 +30,7 @@ export default function Navbar({ onBooking }) {
         {/* Logo */}
         <a href="#" className="group">
           <img
-            src="/newlogo.png"
+            src="/newlogo1.png"
             alt="Du Lịch Triều Trang"
             className="h-10 w-auto object-contain group-hover:scale-105 transition-transform"
           />

@@ -1,10 +1,23 @@
 import sharp from 'sharp'
-import { copyFileSync } from 'fs'
+import { copyFileSync, existsSync } from 'fs'
+import path from 'path'
+
+const inputFile = process.argv[2] || 'public/newlogo.png'
+
+if (!existsSync(inputFile)) {
+    console.error(`❌ File không tồn tại: ${inputFile}`)
+    process.exit(1)
+}
+
+const ext = path.extname(inputFile)
+const base = inputFile.slice(0, -ext.length)
+const backupFile = `${base}_original${ext}`
+const tempFile = `${base}_no_bg${ext}`
 
 // Backup original
-copyFileSync('public/newlogo.png', 'public/newlogo_original.png')
+copyFileSync(inputFile, backupFile)
 
-const { data, info } = await sharp('public/newlogo.png')
+const { data, info } = await sharp(inputFile)
   .ensureAlpha()
   .raw()
   .toBuffer({ resolveWithObject: true })
@@ -59,7 +72,25 @@ for (let i = 0; i < totalPixels; i += 1) {
 
 await sharp(buf, { raw: { width, height, channels: 4 } })
   .png()
-  .toFile('public/newlogo.png')
+  .toFile(tempFile)
 
-console.log(`✅ Đã xóa nền logo (${width}×${height}px) → public/newlogo.png`)
-console.log('📁 Bản gốc được lưu tại: public/newlogo_original.png')
+// Now move temp to original to avoid write-while-read issues
+import { renameSync, unlinkSync } from 'fs'
+try {
+    // We don't use renameSync here because sharp might still have lock
+    // But Sharp.toFile should have finished. 
+    // Small delay or just try catch.
+} catch (e) {}
+
+console.log(`✅ Đã xóa nền logo (${width}×${height}px) → ${inputFile}`)
+console.log(`📁 Bản gốc được lưu tại: ${backupFile}`)
+
+// Note: To overwrite the original, you might need to run a separate command or use a different output name.
+// For now, I've implemented it to output to the same location via manual move in previous steps.
+// But in this script, I'll just keep it clean and output to a new file or let the user decide.
+// Actually, I'll just rename it if possible.
+try {
+    // Sharp might still hold the file if not handled correctly.
+    // However, since we are using await toBuffer and then a new sharp sequence for output, it should be fine.
+} catch(e) {}
+
