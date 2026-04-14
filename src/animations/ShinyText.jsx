@@ -1,42 +1,35 @@
-import { useMemo } from 'react';
-
 const ShinyText = ({ 
   text, 
   disabled = false, 
-  speed = 5, 
+  speed = 4, 
   className = "" 
 }) => {
   const animationDuration = `${speed}s`;
 
   return (
     <span
-      className={`shiny-text ${disabled ? "disabled" : ""} ${className}`}
+      className={`shiny-text-root ${disabled ? "disabled" : ""} ${className}`}
       style={{
         animationDuration: animationDuration,
+        backgroundImage: 'linear-gradient(120deg, rgba(234, 179, 8, 0) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(234, 179, 8, 0) 60%)',
+        backgroundSize: '200% 100%',
+        WebkitBackgroundClip: 'text',
+        backgroundClip: 'text',
+        display: 'inline-block',
       }}
     >
       {text}
       <style>{`
-        .shiny-text {
-          color: #b5b5b522;
-          background: linear-gradient(
-            120deg,
-            rgba(255, 255, 255, 0) 40%,
-            rgba(255, 255, 255, 0.8) 50%,
-            rgba(255, 255, 255, 0) 60%
-          );
-          background-size: 200% 100%;
-          -webkit-background-clip: text;
-          background-clip: text;
-          display: inline-block;
-          animation: shiny-text-animation linear infinite;
+        .shiny-text-root {
+          color: #eab308; /* Màu vàng cơ bản của logo */
+          animation: shiny-text-flow linear infinite;
         }
 
-        .shiny-text.disabled {
+        .shiny-text-root.disabled {
           animation: none;
         }
 
-        @keyframes shiny-text-animation {
+        @keyframes shiny-text-flow {
           0% {
             background-position: 100% 0;
           }

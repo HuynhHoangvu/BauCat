@@ -55,16 +55,20 @@ export default function Hero({ onBooking }) {
       <div className="relative z-20 px-6 sm:px-8 max-w-5xl w-full flex flex-col items-center text-center mt-12">
         
         {/* Tagline */}
-        <div className="animate-fade-in-up mb-6 sm:mb-8">
-          <div className="flex items-center justify-center gap-3 sm:gap-5">
-            <span className="w-10 sm:w-16 h-[1px] bg-gradient-to-r from-transparent to-yellow-400/80" />
-            <ShinyText 
-              text="Tiểu Sa Mạc Bàu Trắng" 
-              className="text-[11px] sm:text-sm font-black uppercase tracking-[0.4em] text-yellow-400 drop-shadow-md" 
-            />
-            <span className="w-10 sm:w-16 h-[1px] bg-gradient-to-l from-transparent to-yellow-400/80" />
-          </div>
-        </div>
+       <div className="animate-fade-in-up mb-6 sm:mb-8">
+  <div className="flex items-center justify-center gap-4 sm:gap-6">
+    {/* Đường kẻ trái - Tăng độ dày và rực rỡ */}
+    <span className="w-12 sm:w-20 h-[3px] bg-gradient-to-r from-transparent via-yellow-400 to-yellow-500 rounded-full shadow-[0_0_10px_rgba(234,179,8,0.5)]" />
+    
+    {/* Chữ lấp lánh - Tăng cỡ chữ */}
+   <ShinyText 
+  text="Tiểu Sa Mạc Bàu Trắng" 
+  className="text-[12px] sm:text-[15px] font-black uppercase tracking-[0.35em] text-yellow-500 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" 
+/>  
+    {/* Đường kẻ phải - Tăng độ dày và rực rỡ */}
+    <span className="w-12 sm:w-20 h-[3px] bg-gradient-to-l from-transparent via-yellow-400 to-yellow-500 rounded-full shadow-[0_0_10px_rgba(234,179,8,0.5)]" />
+  </div>
+</div>
 
         {/* Main Title - Đã sửa lỗi chồng chữ và mất chữ */}
         <h1 className="mb-10 sm:mb-14 pointer-events-none flex flex-col items-center gap-2 sm:gap-4 w-full">

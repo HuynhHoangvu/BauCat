@@ -52,14 +52,18 @@ export default function FloatingContact() {
       {/* Main toggle */}
       <button
         onClick={() => setOpen(v => !v)}
-        className={`w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 font-black text-[10px] uppercase tracking-widest ${
+        className={`w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-500 group ${
           open
-            ? 'bg-gray-700 hover:bg-gray-800 text-white'
-            : 'bg-orange-500 hover:bg-orange-600 text-white'
+            ? 'bg-gray-800 text-white'
+            : 'bg-orange-500 text-white animate-pulse'
         }`}
         aria-label={open ? 'Đóng' : 'Liên hệ'}
       >
-        {open ? 'ĐÓNG' : 'GỌI'}
+        {open ? (
+          <X className="transition-transform duration-300 rotate-0 group-hover:rotate-90" size={24} />
+        ) : (
+          <MessageCircle className="transition-transform duration-300 scale-110" size={24} />
+        )}
       </button>
     </div>
   )
