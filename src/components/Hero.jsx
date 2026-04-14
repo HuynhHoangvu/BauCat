@@ -146,12 +146,6 @@ export default function Hero({ onBooking }) {
           ))}
         </div>
       </div>
-      
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-40 z-20">
-        <div className="w-[2px] h-12 bg-gradient-to-b from-orange-500 to-transparent rounded-full" />
-      </div>
-
     </section>
   )
 }
