@@ -63,8 +63,8 @@ export default function Hero({ onBooking }) {
     {/* Chữ lấp lánh - Tăng cỡ chữ */}
    <ShinyText 
   text="Tiểu Sa Mạc Bàu Trắng" 
-  className="text-[10px] sm:text-[15px] font-black uppercase tracking-[0.3em] sm:tracking-[0.35em] text-yellow-500 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" 
-/>  
+  className="text-[10px] sm:text-[15px] font-black uppercase tracking-[0.3em] sm:tracking-[0.35em] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" 
+/>
     {/* Đường kẻ phải - Tăng độ dày và rực rỡ */}
     <span className="w-10 sm:w-20 h-[2px] sm:h-[3px] bg-gradient-to-l from-transparent via-yellow-400 to-yellow-500 rounded-full shadow-[0_0_10px_rgba(234,179,8,0.5)]" />
   </div>
