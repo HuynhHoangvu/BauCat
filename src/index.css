@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+/* ── Tailwind v4: explicit source scanning for production builds ── */
+@source "../src/**/*.{js,jsx,ts,tsx}";
+
+/* ── Tailwind v4: ensure backdrop-filter utilities are always emitted ── */
+@theme {
+  --backdrop-blur-sm: blur(4px);
+  --backdrop-blur: blur(8px);
+  --backdrop-blur-md: blur(12px);
+  --backdrop-blur-lg: blur(16px);
+  --backdrop-blur-xl: blur(24px);
+  --backdrop-blur-2xl: blur(40px);
+  --backdrop-blur-3xl: blur(64px);
+}
+
 @layer base {
   html { scroll-behavior: smooth; }
   body {
@@ -120,3 +134,34 @@
   animation: float 4s ease-in-out infinite;
 }
 
+/* ── Cross-browser backdrop-filter (Safari / WebKit production fix) ── */
+/* Tailwind v4 emits backdrop-filter but not the -webkit- prefixed version  */
+/* on some production build targets. These overrides guarantee both are set. */
+.backdrop-blur-sm {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.backdrop-blur {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.backdrop-blur-md {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.backdrop-blur-lg {
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+.backdrop-blur-xl {
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+}
+.backdrop-blur-2xl {
+  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(40px);
+}
+.backdrop-blur-3xl {
+  -webkit-backdrop-filter: blur(64px);
+  backdrop-filter: blur(64px);
+}
