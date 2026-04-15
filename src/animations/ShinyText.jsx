@@ -11,12 +11,10 @@ const ShinyText = ({
       className={`shiny-text-root ${disabled ? "disabled" : ""} ${className}`}
       style={{
         animationDuration: animationDuration,
-        /* Đổi gradient: Base vàng (#eab308) -> Sáng trắng (#ffffff) -> Base vàng (#eab308) */
         backgroundImage: 'linear-gradient(120deg, #eab308 40%, #ffffff 50%, #eab308 60%)',
         backgroundSize: '200% 100%',
         WebkitBackgroundClip: 'text',
         backgroundClip: 'text',
-        /* Bắt buộc phải có 2 dòng dưới để chữ trong suốt, lộ background lấp lánh lên */
         WebkitTextFillColor: 'transparent',
         color: 'transparent',
         display: 'inline-block',
@@ -25,7 +23,6 @@ const ShinyText = ({
       {text}
       <style>{`
         .shiny-text-root {
-          /* Không dùng color ở đây nữa, và tách thuộc tính animation để không ghi đè duration */
           animation-name: shiny-text-flow;
           animation-timing-function: linear;
           animation-iteration-count: infinite;
